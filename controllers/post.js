@@ -5,18 +5,14 @@ const router = express.Router();
 const git = require('simple-git');
 const mkdirp = require('mkdirp');
 
-router.get('/:id', (req, res) => {
-  res.json({
-    msg: "Here we create a story (a new git repo)"
-  });
+router.get('/', (req, res) => {
+  res.render('post');
 });
 
-router.post('/:id', (req, res) => {
-  mkdirp('./stories/' + req.params.id); // makes new folder
-  git('stories/' + req.params.id).init(); // inits folder as new repo
-  res.json({
-    msg: "Successful story posted."
-  });
+router.post('/', (req, res) => {
+  mkdirp('./stories/' + req.body.title); // makes new folder
+  git('stories/' + req.body.title).init(); // inits folder as new repo
+  res.render('post');
 });
 
 module.exports = router;
