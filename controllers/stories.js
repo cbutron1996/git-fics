@@ -1,8 +1,9 @@
 const express = require('express');
 const models = require('../models');
-
 const router = express.Router();
+
 const fs = require('fs');
+const Stories = models.Stories;
 
 router.get('/', (req, res) => {
   res.json({

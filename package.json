@@ -7,7 +7,7 @@
     "start": "nodemon -L app.js",
     "test": "jest"
   },
-  "author": "Edgardo Molina",
+  "author": "Christian Butron",
   "license": "ISC",
   "devDependencies": {
     "jest": "^21.2.1"
