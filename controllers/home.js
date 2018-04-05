@@ -1,12 +1,13 @@
 const express = require('express');
 const models = require('../models');
-
 const router = express.Router();
+
+const Stories = models.Stories;
 
 
 router.get('/', (req, res) => {
-  res.json({
-    msg: "Successful GET to '/' route"
+  Stories.findAll().then(stories => {
+    res.render('home', { stories: stories, });
   });
 });
 
