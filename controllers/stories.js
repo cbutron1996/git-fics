@@ -13,7 +13,20 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   var text = fs.readFileSync('./stories/' + req.params.id + '/chapter1.txt', 'utf8');
-  res.send(text);
+  // res.render('story', {
+  //   title: req.params.id,
+  //   story: text,
+  // });
+  Stories.findOne({
+    where: { Title: req.params.id }
+  }).then(story => {
+    res.render('story', {
+      title: story.Title,
+      author: story.Author,
+      description: story.Description,
+      content: text,
+    });
+  });
 });
 
 module.exports = router;

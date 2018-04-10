@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   mkdirp('./stories/' + req.body.title); // makes new folder
-  fs.writeFile("./stories/" + req.body.title + "/chapter1.txt", req.body.description);
+  fs.writeFile("./stories/" + req.body.title + "/chapter1.txt", req.body.content);
   git('stories/' + req.body.title)
   .init()
   .add('./*')
