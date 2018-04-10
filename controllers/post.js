@@ -6,14 +6,22 @@ const git = require('simple-git');
 const mkdirp = require('mkdirp');
 const fs = require('fs');
 const Stories = models.Stories;
+const fileUpload = require('express-fileupload');
+router.use(fileUpload());
 
 router.get('/', (req, res) => {
   res.render('post');
 });
 
 router.post('/', (req, res) => {
+  if (!req.files)
+    return res.status(400).send('No files were uploaded.');
+  let sampleFile = req.files.textFile;
   mkdirp('./stories/' + req.body.title); // makes new folder
-  fs.writeFile("./stories/" + req.body.title + "/chapter1.txt", req.body.content);
+  sampleFile.mv('./stories/' + req.body.title + '/chapter1.doc', function(err) {
+    if (err)
+      return res.status(500).send(err);
+  });
   git('stories/' + req.body.title)
   .init()
   .add('./*')

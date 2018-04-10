@@ -1,5 +1,5 @@
 <div class="container">
-  <form action="/post" method="post">
+  <form ref='uploadForm' id='uploadForm' action="/post" method="post" encType="multipart/form-data">
     <div class="form-group">
       <label for="title">Title</label>
       <input type="text" class="form-control" name="title" aria-describedby="titleHelp" placeholder="Game of Thrones">
@@ -13,8 +13,7 @@
       <textarea type="text" class="form-control" name="description" rows="5"></textarea>
     </div>
     <div class="form-group">
-      <label for="description">Content</label>
-      <textarea type="text" class="form-control" name="content" rows="10"></textarea>
+      <input type="file" name="textFile" />
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

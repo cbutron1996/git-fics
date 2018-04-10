@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  var text = fs.readFileSync('./stories/' + req.params.id + '/chapter1.txt', 'utf8');
+  var text = fs.readFileSync('./stories/' + req.params.id + '/chapter1.doc', 'utf8');
   // res.render('story', {
   //   title: req.params.id,
   //   story: text,
