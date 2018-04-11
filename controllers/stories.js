@@ -4,6 +4,7 @@ const router = express.Router();
 
 const fs = require('fs');
 const Stories = models.Stories;
+const git = require('simple-git');
 
 router.get('/', (req, res) => {
   res.json({
@@ -37,7 +38,7 @@ router.get('/:story/:chapter', (req, res) => {
     where: { Title: req.params.story }
   }).then(story => {
     var text = fs.readFileSync('./stories/' + story.Title + '/' + req.params.chapter, 'utf-8');
-    res.send(text);
+    res.end(text);
   });
 });
 

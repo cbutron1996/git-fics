@@ -13,15 +13,17 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
-router.post('/:title', (req, res) => {
+router.post('/:story', (req, res) => {
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
   let file = req.files.textFile;
-  mkdirp('./stories/' + req.params.title); // makes new folder
-  file.mv('./stories/' + req.params.title + '/' + file.name, function(err) {
+  mkdirp('./stories/' + req.params.story); // makes new folder
+  file.mv('./stories/' + req.params.story + '/' + file.name, function(err) {
     if (err)
       return res.status(500).send(err);
   });
+  git('stories/' + req.params.story)
+  .add('./*');
   res.render('home');
 });
 

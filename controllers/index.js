@@ -7,6 +7,6 @@ router.use('/', require('./home'));
 router.use('/post', require('./post'));
 router.use('/stories', require('./stories'));
 router.use('/add', require('./add'));
-
+router.use('/diff', require('./diff'));
 
 module.exports = router;
