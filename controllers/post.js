@@ -16,9 +16,9 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
-  let sampleFile = req.files.textFile;
+  let file = req.files.textFile;
   mkdirp('./stories/' + req.body.title); // makes new folder
-  sampleFile.mv('./stories/' + req.body.title + '/chapter1.doc', function(err) {
+  file.mv('./stories/' + req.body.title + '/' + file.name, function(err) {
     if (err)
       return res.status(500).send(err);
   });
