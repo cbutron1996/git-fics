@@ -23,6 +23,7 @@ router.get('/:story', (req, res) => {
         // fs.readFile('./stories/' + story.Title + '/' + filename, 'utf-8');
         array[index] = "http://localhost:8000/stories/" + story.Title + "/" + array[index];
       });
+      filenames.splice(0,1);
       res.render('story', {
         title: story.Title,
         author: story.Author,

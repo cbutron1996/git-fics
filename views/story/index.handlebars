@@ -2,15 +2,15 @@
     <form ref='uploadForm' id='uploadForm' action="/add/{{title}}" method="post" encType="multipart/form-data">
       <div class="form-group">
         <label class="btn btn-default"><input type="file" name="textFile" /></label>
+        <button type="submit" class="btn btn-primary">Add Chapter</button>
       </div>
-      <button type="submit" class="btn btn-primary">Add Chapter</button>
     </form>
   <div class="panel panel-default">
     <div class="panel-heading">Title: {{title}}</div>
     <div class="panel-heading">Author: {{author}}</div>
     <div class="panel-heading">Description: {{description}}</div>
     <div class="panel-body">{{#each content}}
-      <a class="btn btn-default" href="{{this}}">{{this}}</a>
+      <a class="btn btn-default" href="{{this}}">Chapter {{@index}}</a>
     {{/each}}<div>
   </div>
 </div>
