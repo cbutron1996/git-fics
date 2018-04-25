@@ -6,8 +6,16 @@ const PORT = process.env.PORT || 8000;
 
 const app = express();
 
+const expressSession = require('express-session');
+const passport = require('./middlewares/authentication');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Enable sessions & passport
+app.use(expressSession(({ secret: 'keyboard cat', resave: false, saveUninitialized: true })));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // Uncomment the following if you want to serve up static assets.

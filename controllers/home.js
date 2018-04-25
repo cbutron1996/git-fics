@@ -7,7 +7,7 @@ const Stories = models.Stories;
 
 router.get('/', (req, res) => {
   Stories.findAll().then(stories => {
-    res.render('home', { stories: stories, });
+    res.render('home', { stories: stories, user: req.user});
   });
 });
 

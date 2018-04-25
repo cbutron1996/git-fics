@@ -9,6 +9,8 @@ router.use('/stories', require('./stories'));
 router.use('/add', require('./add'));
 router.use('/diff', require('./diff'));
 router.use('/fork', require('./fork'));
+router.use('/login', require('./login'));
+router.use('/signup', require('./signup'));
 
 
 module.exports = router;
