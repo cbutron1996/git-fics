@@ -17,22 +17,22 @@ router.post('/', (req, res) => {
   if (!req.files)
     return res.status(400).send('No files were uploaded.');
   let file = req.files.textFile;
-  mkdirp('./stories/' + req.body.title); // makes new folder
-  file.mv('./stories/' + req.body.title + '/' + file.name, function(err) {
+  mkdirp('./stories/' + req.user.name + '/' + req.body.title); // makes new folder
+  file.mv('./stories/' + req.user.name + '/' + req.body.title + '/' + file.name, function(err) {
     if (err)
       return res.status(500).send(err);
   });
-  git('stories/' + req.body.title)
+  git('stories/' + req.user.name + '/' + req.body.title)
   .init()
   .add('./*')
   .commit("first commit!");
   Stories.create({
     Title: req.body.title,
-    Author: req.body.author,
+    Author: req.user.name,
     Description: req.body.description,
     NumChapters: 10,
   });
-  res.render('post');
+  res.redirect('/');
 });
 
 module.exports = router;

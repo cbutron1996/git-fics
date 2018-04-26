@@ -1,11 +1,11 @@
 <div class="container">
-    <form ref='uploadForm' id='uploadForm' action="/add/{{title}}" method="post" encType="multipart/form-data">
+    <form ref='uploadForm' id='uploadForm' action="/add/{{author}}/{{title}}" method="post" encType="multipart/form-data">
       <div class="form-group">
         <label class="btn btn-default"><input type="file" name="textFile" /></label>
         <button type="submit" class="btn btn-primary">Add Chapter</button>
       </div>
     </form>
-    <form id='fork' action="/fork/{{title}}" method="post" encType="multipart/form-data">
+    <form id='fork' action="/fork/{{author}}/{{title}}" method="post" encType="multipart/form-data">
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Fork</button>
       </div>

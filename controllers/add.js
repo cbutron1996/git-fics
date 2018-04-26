@@ -13,18 +13,22 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
-router.post('/:story', (req, res) => {
-  if (!req.files)
-    return res.status(400).send('No files were uploaded.');
-  let file = req.files.textFile;
-  mkdirp('./stories/' + req.params.story); // makes new folder
-  file.mv('./stories/' + req.params.story + '/' + file.name, function(err) {
-    if (err)
-      return res.status(500).send(err);
+router.post('/:author/:title', (req, res) => {
+  Stories.findOne({
+    where: { Title: req.params.title, Author: req.params.author }
+  }).then(story => {
+    if (!req.files)
+      return res.status(400).send('No files were uploaded.');
+    let file = req.files.textFile;
+    mkdirp('./stories/' + story.Author + '/' + story.Title); // makes new folder
+    file.mv('./stories/' + story.Author + '/' + story.Title + '/' + file.name, function(err) {
+      if (err)
+        return res.status(500).send(err);
+    });
+    git('stories/' + story.Author + '/' + story.Title)
+    .add('./*');
+    res.redirect('/');
   });
-  git('stories/' + req.params.story)
-  .add('./*');
-  res.render('home');
 });
 
 module.exports = router;

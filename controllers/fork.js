@@ -13,11 +13,22 @@ router.get('/', (req, res) => {
   res.render('home');
 });
 
-router.post('/:story', (req, res) => {
-  // mkdirp('./stories/clones/' + req.body.title); // makes new folder
-  git()
-  .clone('stories/' + req.params.story, 'stories/clones/' + req.params.story);
-  res.render('home');
+router.post('/:author/:title', (req, res) => {
+  Stories.findOne({
+    where: { Author: req.params.author, Title: req.params.title }
+  }).then(story => {
+    git()
+    .clone('stories/' + story.Author + '/' + story.Title, 'stories/' + req.user.name + '/' + story.Title);
+    Stories.create({
+      Title: story.Title,
+      Author: req.user.name,
+      Description: story.Description,
+      NumChapters: 10,
+    });
+    res.redirect('/');
+  });
+
+
 });
 
 module.exports = router;

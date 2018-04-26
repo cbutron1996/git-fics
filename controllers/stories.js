@@ -12,16 +12,16 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:story', (req, res) => {
+router.get('/:author/:title', (req, res) => {
   Stories.findOne({
-    where: { Title: req.params.story }
+    where: { Author: req.params.author, Title: req.params.title }
   }).then(story => {
     // var text = fs.readFileSync('./stories/' + story.Title + '/storysample.doc', 'utf8');
-    fs.readdir('./stories/' + story.Title + '/', function(err, filenames) {
+    fs.readdir('./stories/' + story.Author + '/' + story.Title + '/', function(err, filenames) {
       if(err) return;
       filenames.forEach(function(part, index, array) {
         // fs.readFile('./stories/' + story.Title + '/' + filename, 'utf-8');
-        array[index] = "http://localhost:8000/stories/" + story.Title + "/" + array[index];
+        array[index] = "http://localhost:8000/stories/" + story.Author + "/" + story.Title + "/" + array[index];
       });
       filenames.splice(0,1);
       res.render('story', {
@@ -34,11 +34,11 @@ router.get('/:story', (req, res) => {
   });
 });
 
-router.get('/:story/:chapter', (req, res) => {
+router.get('/:author/:title/:chapter', (req, res) => {
   Stories.findOne({
-    where: { Title: req.params.story }
+    where: { Author: req.params.author, Title: req.params.title }
   }).then(story => {
-    var text = fs.readFileSync('./stories/' + story.Title + '/' + req.params.chapter, 'utf-8');
+    var text = fs.readFileSync('./stories/' + story.Author + '/' + story.Title + '/' + req.params.chapter, 'utf-8');
     res.end(text);
   });
 });
