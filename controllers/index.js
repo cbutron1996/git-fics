@@ -11,6 +11,8 @@ router.use('/diff', require('./diff'));
 router.use('/fork', require('./fork'));
 router.use('/login', require('./login'));
 router.use('/signup', require('./signup'));
+router.use('/pr', require('./pr'));
+router.use('/prs', require('./prs'));
 
 
 module.exports = router;

@@ -1,0 +1,29 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/file_section.css">
+  <link href="https://cdn.rawgit.com/westonganger/bootstrap-directional-buttons/master/dist/bootstrap-directional-buttons.css" rel="stylesheet" type="text/css" />
+</head>
+  <h1>Hello {{ user.name }}</h1>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th>Head</th>
+        <th>Diff<th>
+        <th>Pull</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- example to create a row -->
+      <!-- <tr>
+        <td>Juldy</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr> -->
+      {{#each prs}}
+        <tr>
+          <td><a href="http://localhost:8000/stories/{{this.Head}}/{{this.Title}}" target="_blank">{{this.Head}}/{{this.Title}}</a></td>
+          <td><a href="http://localhost:8000/diff/{{this.Head}}/{{this.Title}}" target="_blank">{{this.Head}}/{{this.Title}}</a></td>
+          <td><a href="http://localhost:8000/pull/{{this.Head}}/{{this.Title}}" target="_blank">{{this.Head}}/{{this.Title}}</a></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>

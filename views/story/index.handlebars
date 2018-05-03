@@ -1,15 +1,20 @@
 <div class="container">
-    <form ref='uploadForm' id='uploadForm' action="/add/{{author}}/{{title}}" method="post" encType="multipart/form-data">
-      <div class="form-group">
-        <label class="btn btn-default"><input type="file" name="textFile" /></label>
-        <button type="submit" class="btn btn-primary">Add Chapter</button>
-      </div>
-    </form>
-    <form id='fork' action="/fork/{{author}}/{{title}}" method="post" encType="multipart/form-data">
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Fork</button>
-      </div>
-    </form>
+  <form ref='uploadForm' id='uploadForm' action="/add/{{author}}/{{title}}" method="post" encType="multipart/form-data" class="pull-left">
+    <label class="btn btn-default"><input type="file" name="textFile" /></label>
+    <button type="submit" class="btn btn-primary">Add Chapter</button>
+  </form>
+  <form action="/fork/{{author}}/{{title}}" method="post" class="pull-left">
+    <button type="submit" class="btn btn-primary">Fork</button>
+  </form>
+  <form action="/diff/{{author}}/{{title}}" method="get" class="pull-left">
+    <button type="submit" class="btn btn-primary">Diff</button>
+  </form>
+  <form action="/pr/{{author}}/{{title}}" method="post" class="pull-left">
+    <button type="submit" class="btn btn-primary">New Pull Request</button>
+  </form>
+  <form action="/prs/{{author}}/{{title}}" method="get">
+    <button type="submit" class="btn btn-primary">Pull Requests</button>
+  </form>
   <div class="panel panel-default">
     <div class="panel-heading">Title: {{title}}</div>
     <div class="panel-heading">Author: {{author}}</div>

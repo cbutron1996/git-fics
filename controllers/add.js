@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 router.post('/:author/:title', (req, res) => {
   Stories.findOne({
-    where: { Title: req.params.title, Author: req.params.author }
+    where: { Author: req.params.author, Title: req.params.title }
   }).then(story => {
     if (!req.files)
       return res.status(400).send('No files were uploaded.');
@@ -26,7 +26,8 @@ router.post('/:author/:title', (req, res) => {
         return res.status(500).send(err);
     });
     git('stories/' + story.Author + '/' + story.Title)
-    .add('./*');
+    .add('./*')
+    .commit("Added " + file.name);
     res.redirect('/');
   });
 });
