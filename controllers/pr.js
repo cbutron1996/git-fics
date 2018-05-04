@@ -8,10 +8,6 @@ const fs = require('fs');
 const Stories = models.Stories;
 const PRs = models.PRs;
 
-router.get('/', (req, res) => {
-  res.render('home');
-});
-
 router.post('/:author/:title', (req, res) => {
   if(req.params.author == req.user.name) {
     res.redirect('/');

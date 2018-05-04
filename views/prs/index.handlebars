@@ -22,7 +22,9 @@
         <tr>
           <td><a href="http://localhost:8000/stories/{{this.Head}}/{{this.Title}}" target="_blank">{{this.Head}}/{{this.Title}}</a></td>
           <td><a href="http://localhost:8000/diff/{{this.Head}}/{{this.Title}}" target="_blank">{{this.Head}}/{{this.Title}}</a></td>
-          <td><a href="http://localhost:8000/pull/{{this.Head}}/{{this.Title}}" target="_blank">{{this.Head}}/{{this.Title}}</a></td>
+          <td><form action="/pull/{{this.Head}}/{{this.Title}}" method="post">
+            <button type="submit" class="btn btn-primary">Pull</button>
+          </form></td>
         </tr>
       {{/each}}
     </tbody>

@@ -13,6 +13,7 @@ router.use('/login', require('./login'));
 router.use('/signup', require('./signup'));
 router.use('/pr', require('./pr'));
 router.use('/prs', require('./prs'));
+router.use('/pull', require('./pull'));
 
 
 module.exports = router;
