@@ -15,7 +15,9 @@ router.post('/:author/:title', (req, res) => {
 
     git('stories/' + pr.Base + '/' + pr.Title)
     .pull('/Users/christianbutron/projects/git-fics/stories/' + pr.Head + '/' + pr.Title, 'master');
-    
+
+    git('stories/' + pr.Head + '/' + pr.Title).pull();
+
     res.redirect('/');
   });
 });

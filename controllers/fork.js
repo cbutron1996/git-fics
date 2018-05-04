@@ -23,7 +23,7 @@ router.post('/:author/:title', (req, res) => {
       Title: story.Title,
       Author: req.user.name,
       Description: story.Description,
-      NumChapters: 10,
+      NumChapters: story.NumChapters,
     });
     res.redirect('/');
   });

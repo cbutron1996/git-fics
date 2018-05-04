@@ -17,6 +17,9 @@ router.post('/:author/:title', (req, res) => {
   Stories.findOne({
     where: { Author: req.params.author, Title: req.params.title }
   }).then(story => {
+    story.updateAttributes({
+      NumChapters: story.NumChapters + 1,
+    });
     if (!req.files)
       return res.status(400).send('No files were uploaded.');
     let file = req.files.textFile;

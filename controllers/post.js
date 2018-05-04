@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     Title: req.body.title,
     Author: req.user.name,
     Description: req.body.description,
-    NumChapters: 10,
+    NumChapters: 1,
   });
   res.redirect('/');
 });
